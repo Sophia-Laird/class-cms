@@ -1,18 +1,19 @@
 const express = require('express');
-const res = require('express/lib/response');
+const db = require('./db');
 
 const app = express();
 const PORT = 3000;
 
-app.get('/', (req, res) => {
-    res.send("<h1> Hello from the server! </h1>");
+app.set("view engine", "ejs");
+app.use(express.static("public"));
+
+//Ask the database for all posts (newest first)
+//res.render('index', { posts }): fill views/index.ejs with that data
+app.get('/', (req, res) =>{
+    const posts = db.prepare('SELECT * FROM posts ORDER BY id DESC').all();
+    res.render('index', { posts });
 });
 
-app.get('/about', (req, res) =>{
-    res.send("<h1>About the Web Design Club</h1>");
-})
-
-app.listen(PORT, () =>{
-    console.log("Server running at http:localhost:" + PORT);
+app.listen(PORT, () => {
+    console.log("Server running at http://localhost:" + PORT);
 });
-

@@ -1,0 +1,16 @@
+<%- include('partials/header') %>
+
+<h2>Latest Posts</h2>
+
+<% if (posts.length === 0) { %>
+    <p>No posts yet.</p>
+<% } %>
+
+<%posts.forEach(post => { %>
+    <article class = "post-card">
+        <h3><a href = "/post/<%= post.id %>"><%= post.title %></a></h3>
+        <p><%= post.body.substring(0,100) %></p>
+    </article>
+<% }) %>
+
+<%- include("partials/footer") %>

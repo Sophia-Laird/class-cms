@@ -15,4 +15,15 @@ db.exec(`
     )
 `);
 
+
+//sUNIQUE means no two users can share a username. 
+//Notice the column is password_hash, not password.
+db.exec(`
+    CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT, 
+    username TEXT NOT NULL UNIQUE,
+    password_hash TEXT NOT NULL
+    )
+`);
+
 module.exports = db;

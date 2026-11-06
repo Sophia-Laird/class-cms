@@ -1,0 +1,26 @@
+<%- include("partials/header") %>
+
+<h2>Dashboard</h2>
+<p><a href = "/admin/new" class = "button">+ New Post</a></p>
+
+<table class = "table">
+    <tr>
+        <th>Title</th>
+        <th>Created</th>
+        <th>Actions</th>
+    </tr>
+    <% posts.forEach(post => { %>
+        <tr>
+            <td><%= post.title %></td>
+            <td><%= post.created_at %></td>
+            <td>
+                <a href = "/admn/edit/<%= post.id %>">Edit</a>
+                <form action = "/admin/delete/<%= post.id %>" method = "POST" class = "inline">
+                    <button type = "submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+    <% }) %>
+</table>
+
+<%- include("partials/footer") %>

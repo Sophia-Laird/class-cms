@@ -1,0 +1,16 @@
+<%- include('partials/header') %>
+
+<h2><%= post ? "Edit Post" : "New Post" %></h2>
+
+<form action="<%= post ? '/admin/edit/' + post.id : '/admin/new' %>" method="POST" class="form">
+  
+  <label for="title">Title</label>
+  <input type="text" id="title" name="title" value="<%= post ? post.title : '' %>" required>
+
+  <label for="body">Body</label>
+  <textarea id="body" name="body" rows="10" required><%= post ? post.body : '' %></textarea>
+
+  <button type="submit">Save</button>
+</form>
+
+<%- include('partials/footer') %>
